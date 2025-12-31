@@ -4,7 +4,7 @@ import Typewriter from "typewriter-effect";
 
 const Hero = () => {
   return (
-    <section className="py-10">
+    <section className="py-2">
       <div className="flex justify-between items-start">
         <div className="space-y-4">
           {/* Judul dengan Efek Mengetik */}
@@ -45,5 +45,4 @@ const Hero = () => {
     </section>
   );
 };
-
 export default Hero;

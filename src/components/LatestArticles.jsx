@@ -31,12 +31,12 @@ const articles = [
 
 const LatestArticles = () => {
   return (
-    <section className="py-12">
+    <section className="py-2">
       <div className="flex items-center gap-2 mb-2">
         <BookOpen size={20} className="text-gray-700" />
         <h2 className="text-xl font-semibold text-gray-900">Latest Articles</h2>
       </div>
-      <p className="text-gray-500 mb-8 text-lg">Latest articles from dev.to</p>
+      <p className="text-gray-500 mb-8 text-lg">Latest articles from trending news</p>
 
       {/* Kontainer Scroll Horizontal */}
       <div className="relative group">

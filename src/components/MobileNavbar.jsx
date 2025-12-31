@@ -55,7 +55,7 @@ const MobileNavbar = () => {
               <Image src={profile} alt="Profile" fill className="object-cover" />
             </div>
             <span className="font-bold text-lg text-gray-900">
-              Ardhananta
+              Ardhananta Ibanez
             </span>
           </Link>
 

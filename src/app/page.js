@@ -8,7 +8,6 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <Hero />
-      <About/>
       <LatestArticles />
       <Services />
     </div>
