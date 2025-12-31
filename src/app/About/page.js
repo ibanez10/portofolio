@@ -1,5 +1,6 @@
 // app/about/page.js
 import AboutPage from "@/components/AboutPage";
+import SkillsMarquee from "@/components/SkillsMarquee";
 
 export const metadata = {
   title: "About | Ardhananta Ibanez",
@@ -7,5 +8,10 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <AboutPage />;
+  return (
+    <>
+      <AboutPage />
+      <SkillsMarquee />
+    </>
+  );
 }

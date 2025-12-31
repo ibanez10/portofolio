@@ -17,11 +17,11 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
     { name: "Home", icon: Home, href: "/" },
     { name: "About", icon: User, href: "/About" },
     { name: "Blog", icon: PenTool, href: "/blog" },
-    { name: "Projects", icon: FolderGit2, href: "/projects" },
-    { name: "Roadmap", icon: Map, href: "/roadmap" },
+    { name: "Projects", icon: FolderGit2, href: "/Project" },
+    { name: "Roadmap", icon: Map, href: "/Roadmap" },
     { name: "Task Board", icon: ClipboardList, href: "/task-board" },
     { name: "Chat Room", icon: MessageCircle, href: "/chat-room" },
-    { name: "Contact", icon: Send, href: "/contact" },
+    { name: "Contact", icon: Send, href: "/Contact" },
   ];
 
   return (

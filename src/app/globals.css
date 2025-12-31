@@ -75,3 +75,27 @@
     filter: blur(0.3px);
   }
 }
+
+/* Tetap: Kanan ke Kiri */
+@keyframes infinite-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* PERBAIKAN: Kiri ke Kanan */
+@keyframes infinite-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+  will-change: transform;
+}
+
+/* Gunakan animasi reverse di sini */
+.animate-infinite-scroll-reverse {
+  animation: infinite-scroll-reverse 25s linear infinite;
+  will-change: transform;
+}
+
