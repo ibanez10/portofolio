@@ -1,52 +1,158 @@
-// components/MobileNavbar.jsx
 "use client";
 
-import React, { useState } from "react";
-import { Menu, X, Sun } from "lucide-react"; // Menggunakan Lucide icons
+import React, { useState, useEffect } from "react";
+import {
+  Menu,
+  X,
+  CloudSun,
+  Home,
+  User,
+  PenTool,
+  FolderGit2,
+  Map,
+  ClipboardList,
+  MessageCircle,
+  Send,
+} from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import profile from "@/app/profile.jpeg";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+
+const menuItems = [
+  { name: "Home", href: "/", icon: Home },
+  { name: "About", href: "/about", icon: User },
+  { name: "Blog", href: "/blog", icon: PenTool },
+  { name: "Projects", href: "/projects", icon: FolderGit2 },
+  { name: "Roadmap", href: "/roadmap", icon: Map },
+  { name: "Task Board", href: "/task-board", icon: ClipboardList },
+  { name: "Chat Room", href: "/chat-room", icon: MessageCircle },
+  { name: "Contact", href: "/contact", icon: Send },
+];
 
 const MobileNavbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Lock body scroll saat menu terbuka
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+  }, [open]);
 
   return (
-    <header className="md:hidden fixed top-0 left-0 w-full bg-white border-b border-gray-100 z-[100] px-4 py-3 flex items-center justify-between">
-      {/* Profil Kiri */}
-      <div className="flex items-center gap-3">
-        <img 
-          src="https://github.com/shadcn.png" 
-          alt="Profile" 
-          className="w-8 h-8 rounded-full border"
-        />
-        <h1 className="font-semibold text-lg flex items-center gap-1 text-gray-900">
-          Ardhananta Ibanez <span className="text-blue-500 text-[10px]"></span>
-        </h1>
-      </div>
+    <div className="md:hidden">
+      {/* HEADER */}
+      <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-gray-200">
+        <div className="max-w-[640px] mx-auto px-5 py-4 flex items-center justify-between">
+          {/* Profile */}
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3"
+          >
+            <div className="relative w-10 h-10 rounded-full overflow-hidden">
+              <Image src={profile} alt="Profile" fill className="object-cover" />
+            </div>
+            <span className="font-bold text-lg text-gray-900">
+              Ardhananta
+            </span>
+          </Link>
 
-      {/* Kontrol Kanan */}
-      <div className="flex items-center gap-4">
-        <button className="text-gray-500 hover:text-gray-900">
-          <Sun size={20} />
-        </button>
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-gray-700 hover:text-gray-900 focus:outline-none"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+          {/* Right Icons */}
+          <div className="flex items-center gap-5">
+            <a className="text-gray-700 transition">
+              <CloudSun size={27} strokeWidth={2} />
+            </a>
 
-      {/* Dropdown Menu Mobile */}
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-gray-100 p-4 shadow-lg animate-in slide-in-from-top duration-300">
-            {/* Isi menu navigasi mobile di sini */}
-            <nav className="flex flex-col gap-2">
-                <Link href="/" onClick={() => setIsOpen(false)} className="py-2 text-sm font-medium border-b border-gray-50">Home</Link>
-                <Link href="/about" onClick={() => setIsOpen(false)} className="py-2 text-sm font-medium border-b border-gray-50">About</Link>
-                <Link href="/blog" onClick={() => setIsOpen(false)} className="py-2 text-sm font-medium border-b border-gray-50">Blog</Link>
-            </nav>
+            <a
+              onClick={() => setOpen(!open)}
+              className="text-gray-900"
+              aria-label="Toggle Menu"
+            >
+              <AnimatePresence mode="wait">
+                {open ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                  >
+                    <X size={28} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="open"
+                    initial={{ scale: 0.6, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 1.4, opacity: 0 }}
+                  >
+                    <Menu size={28} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </a>
+          </div>
         </div>
-      )}
-    </header>
+      </header>
+
+      {/* OVERLAY */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="fixed inset-0 bg-white/80 backdrop-blur-xl z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* MENU DRAWER */}
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 20, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-x-0 top-[72px] bottom-0 z-50 overflow-y-auto"
+          >
+            <div className="max-w-[640px] mx-auto px-6 py-8 flex flex-col gap-6">
+              {menuItems.map((item, i) => {
+                const Icon = item.icon;
+                const active = pathname === item.href;
+
+                return (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.04 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={`flex items-center gap-5 py-4 ${
+                        active
+                          ? "text-blue-600 font-bold"
+                          : "text-gray-500 hover:text-gray-900"
+                      }`}
+                    >
+                      <Icon size={22} strokeWidth={active ? 2 : 1.4} />
+                      <span className="text-xl tracking-tight">
+                        {item.name}
+                      </span>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 

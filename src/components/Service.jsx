@@ -65,7 +65,7 @@ const Services = () => {
       >
         <div className="flex items-center gap-2 mb-2">
           <span className="text-xl">🚀</span>
-          <h2 className="text-xl font-bold text-gray-900">Services</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Services</h2>
         </div>
         <p className="text-gray-500 text-lg">I can deliver the following services</p>
       </motion.div>

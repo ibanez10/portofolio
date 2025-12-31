@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Home, User, PenTool, FolderGit2, Map, ClipboardList, 
-  MessageCircle, Send, CloudSun, Heart, BadgeCheck 
+  MessageCircle, Send, CloudSun, Heart, BadgeCheck, CloudMoon 
 } from "lucide-react";
 
 const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
@@ -90,10 +90,10 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
           className="flex flex-col items-center"
         >
           <motion.div 
-            layout // Otomatis menganimasi perubahan ukuran div
+            layout 
             className={`relative mb-3 ${isCollapsed ? "w-12 h-12 mt-0" : "w-24 h-24 mt-2"}`}
           >
-            <Image
+          <Image
             src={profile}
             alt="Profile"
             fill
@@ -104,7 +104,7 @@ const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
           {isCollapsed ? (
             <div className="flex flex-col items-center text-gray-400 py-6">
               <CloudSun size={25} strokeWidth={1.5} />
-              <div className="w-8 border-t border-gray-200 mt-6" />
+              <div className="w-7 mt-6" />
             </div>
           ) : (
             <motion.div 
