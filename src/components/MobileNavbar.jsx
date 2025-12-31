@@ -24,7 +24,7 @@ const menuItems = [
   { name: "Home", href: "/", icon: Home },
   { name: "About", href: "/About", icon: User },
   { name: "Blog", href: "/blog", icon: PenTool },
-  { name: "Projects", href: "/project", icon: FolderGit2 },
+  { name: "Projects", href: "/Project", icon: FolderGit2 },
   { name: "Roadmap", href: "/Roadmap", icon: Map },
   { name: "Task Board", href: "/task-board", icon: ClipboardList },
   { name: "Chat Room", href: "/chat-room", icon: MessageCircle },
